@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense tracker</title>
+    <style>
+        body{
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 20vh;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="headingExpense"></h1>
+    <input type="text" id="userInput"></input>
+    <button id="btnAddExpense">+</button>
+    <script>
+        const element=document.querySelector("#btnAddExpense");
+        const inputExpense=document.querySelector("#userInput");
+        const headingEl=document.querySelector("#headingExpense");
+        inputExpense.addEventListener("change",readInput);
+       
+
+        let totalExpense=0;
+        let expense=0;
+        headingEl.textContent=totalExpense;
+        
+        function readInput(){
+            expense = inputExpense.value;
+            console.log({expense})
+        }
+
+        function addExpenseToTotal(){
+        totalExpense = totalExpense + parseInt(expense);
+        headingEl.textContent=totalExpense;
+        console.log({totalExpense});
+        }
+        
+        
+
+        element.addEventListener("click", addExpenseToTotal, false);
+       
+        
+    </script>
+</body>
+</html>
