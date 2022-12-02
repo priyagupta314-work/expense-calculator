@@ -17,32 +17,66 @@
 </head>
 <body>
     <h1 id="headingExpense"></h1>
-    <input type="text" id="userInput"></input>
+    <input type="text" id="expenseDesc" >
+    <input type="text" id="userInput" >
     <button id="btnAddExpense">+</button>
     <script>
+        //reference to add button
         const element=document.querySelector("#btnAddExpense");
-        const inputExpense=document.querySelector("#userInput");
-        const headingEl=document.querySelector("#headingExpense");
-        inputExpense.addEventListener("change",readInput);
-       
 
+        //reference to entered expense value
+        const inputExpense=document.querySelector("#userInput");
+
+        //reference to total expense field
+        const headingEl=document.querySelector("#headingExpense");
+
+        const expDescEl=document.querySelector("#expenseDesc");
+        
+       
+        //initialize variables
         let totalExpense=0;
-        let expense=0;
+        
+        const allExpense=[];
+        
+
+        //show initial value in DOM
         headingEl.textContent=totalExpense;
         
-        function readInput(){
-            expense = inputExpense.value;
-            console.log({expense})
-        }
+     
 
-        function addExpenseToTotal(){
-        totalExpense = totalExpense + parseInt(expense);
+        function addExpenseToTotal()
+        {
+        const expense={};
+        //read the description
+        const expDesc = expDescEl.value;
+        //console.log({expDesc, expense});
+
+        //obtain the entered expense value
+        const expValue = inputExpense.value;
+
+        expense.desc=expDesc;
+        expense.amount=expValue;
+
+        console.log({expense})
+
+        
+
+        //add current expense value to total expense
+        totalExpense = totalExpense + parseInt(expValue);
+
+        //update total expense value in DOM
         headingEl.textContent=totalExpense;
         console.log({totalExpense});
+
+        //add expense to list
+        allExpense.push(expense);
+
+        console.table(allExpense);
         }
         
         
-
+        
+        //call function when the button is clicked
         element.addEventListener("click", addExpenseToTotal, false);
        
         
