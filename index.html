@@ -20,6 +20,7 @@
     <input type="text" id="expenseDesc" >
     <input type="text" id="userInput" >
     <button id="btnAddExpense">+</button>
+    <div id="expenseList"></div>
     <script>
         //reference to add button
         const element=document.querySelector("#btnAddExpense");
@@ -31,6 +32,8 @@
         const headingEl=document.querySelector("#headingExpense");
 
         const expDescEl=document.querySelector("#expenseDesc");
+
+        const expenseListEl=document.querySelector("#expenseList");
         
        
         //initialize variables
@@ -71,6 +74,13 @@
         //add expense to list
         allExpense.push(expense);
 
+        const data=allExpense.map(expenseItem => {
+            return `<div> ${expenseItem.desc} : ${expenseItem.amount} </div>` });
+
+        console.log({data});
+        const finalData=data.join("");
+        
+        expenseListEl.innerHTML=finalData;
         console.table(allExpense);
         }
         
